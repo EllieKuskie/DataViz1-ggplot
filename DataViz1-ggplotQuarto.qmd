@@ -69,5 +69,71 @@ ggplot(data = ci_np, mapping = aes(x = year, y = visitors)) +
 ## Q3)
 
 ```{r}
+# made line plot but changed line color and type
+ggplot(data = ci_np, mapping = aes(x = year, y = visitors)) +
+  geom_point(color = "blue", 
+             shape = 2) +
+  geom_line(color = "purple", 
+            linetype = "dashed")
 
+# changed point size based on visitor number
+ggplot(ci_np, aes(x = year, y = visitors)) +
+  geom_point(aes(size = visitors))
+
+# also color coded the number of visitors
+ggplot(ci_np, aes(x = year, y = visitors)) +
+  geom_point(aes(size = visitors,
+                 color = visitors))
 ```
+
+## Q4)
+
+```{r}
+# read new csv file
+ca_np <- read.csv("ca_np.csv")
+
+# Fetch the column only - not informative! Too many values!
+ca_np$park_name
+
+# Fetch the column but with the output run through the unique() function
+unique(ca_np$park_name)
+
+# Scatterplot for all parks
+ggplot(data = ca_np, mapping = aes(x = year, y = visitors)) +
+  geom_point()
+```
+
+## Q5)
+
+```{r}
+# Color coded the different parks
+ggplot(data = ca_np, mapping = aes(x = year, y = visitors)) +
+  geom_point(aes(color = park_name))
+
+# Added facet_wrap() to separate the different parks
+ggplot(data = ca_np, mapping = aes(x = year, y = visitors)) +
+  geom_point(aes(color = park_name)) +
+  facet_wrap(park_name ~ .)
+
+# changed the y-axis so each graph goes according to itself
+ggplot(data = ca_np, mapping = aes(x = year, y = visitors)) +
+  geom_point(aes(color = park_name)) +
+  facet_wrap(park_name ~ ., scales = "free_y")
+```
+
+## Q6)
+
+How does abalone landings differ based on species over a 25 year period?
+
+## Q7)
+
+```{r}
+abalone_landings <- read.csv("abalone_landings.csv")
+
+abalone_landings <- read.csv("abalone_landings.csv")
+ggplot(abalone_landings, aes(fill = Abalone_Species , x = Year, y = Abalone_Landings_lbs)) +
+  geom_bar(position = "stack", stat = "identity")
+```
+
+1)  I have learned from the graph that in general all of the abalone species surveyed are decreasing. However, some are decreasing at more dramatic rates than others.
+2)  How does abalone landing change based on location? This would require data on where the counts were conducted.
