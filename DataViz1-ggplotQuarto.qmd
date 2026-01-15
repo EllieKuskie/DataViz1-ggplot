@@ -1,0 +1,73 @@
+---
+title: "DataViz1-ggplotBasics"
+author: "Ellie Kuskie"
+format: pdf
+editor: visual
+---
+
+## Setup
+
+```{r}
+library(ggplot2)
+library(here)
+
+# Read in the data and store as "ci_np" data object
+ci_np <- read.csv("ci_np.csv")
+
+# display the first 6 rows
+head(ci_np)
+```
+
+## Q1)
+
+```{r}
+# got column names from ci_np dataset
+colnames(ci_np)
+
+# created blank plot (no axes or points)
+ggplot(data = ci_np)
+
+# made plot with axes but still no points
+ggplot(data = ci_np, mapping = aes(x = year, y = visitors))
+
+# added points to graph
+ggplot(data = ci_np, mapping = aes(x = year, y = visitors)) +
+  geom_point()
+
+# changed graph to column chart
+ggplot(data = ci_np, mapping = aes(x = year, y = visitors)) +
+  geom_col()
+```
+
+## Q2)
+
+```{r}
+# made into line graph
+ggplot(data = ci_np, mapping = aes(x = year, y = visitors)) +
+  geom_point() +
+  geom_line()
+
+# made smooth trendline instead of just connecting dots
+# then made it linear using method = lm
+ggplot(data = ci_np, mapping = aes(x = year, y = visitors)) +
+  geom_point() +
+  geom_smooth(method = lm)
+
+# created histogram
+ggplot(data = ci_np, mapping = aes(x = visitors)) +
+  geom_histogram()
+
+# created density line instead of histogram
+ggplot(data = ci_np, mapping = aes(x = visitors)) +
+  geom_density()
+
+# made points on graph blue and differently shaped
+ggplot(data = ci_np, mapping = aes(x = year, y = visitors)) +
+  geom_point(shape = 8, color = "blue")
+```
+
+## Q3)
+
+```{r}
+
+```

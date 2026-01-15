@@ -291,6 +291,11 @@ ggplot(ci_np, aes(x = year, y = visitors)) +
 Let’s go back to the lineplot. Create the lineplot, but this time, with
 a dashed linetype and a different colored line.
 
+``` r
+ggplot(data = ci_np, mapping = aes(x = year, y = visitors)) +
+  geom_line(color = "purple", linetype = "dashed")
+```
+
 ## Mapping other variables onto aesthetics
 
 So far we’ve changed different elements (shape, color) of the geoms
@@ -839,6 +844,8 @@ questions.
 Explore this dataset a little bit and then write a research question
 that you would like to answer.
 
+How does abalone landings differ based on species over a 25 year period?
+
 ### Q7 Make a graph to answer your question
 
 Use what you have learned to make a graph to answer that question. Try
@@ -850,6 +857,18 @@ After you have made a graph, write 1) a sentence or two about what you
 have learned from the graph and 2) a follow-up research question (is
 there additional data that you might want to acquire for your follow-up
 question?).
+
+``` r
+abalone_landings <- read.csv("abalone_landings.csv")
+ggplot(abalone_landings, aes(fill = Abalone_Species , x = Year, y = Abalone_Landings_lbs)) +
+  geom_bar(position = "stack", stat = "identity")
+```
+
+1) I have learned from the graph that in general all of the abalone species
+  surveyed are decreasing. However, some are decreasing at more dramatic rates
+  than others.
+2) How does abalone landing change based on location? This would require data on
+  where the counts were conducted.
 
 ### Q8 Export the graph
 
